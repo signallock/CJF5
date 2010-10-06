@@ -1,0 +1,8 @@
+Objective
+This project provides a tool to hide secret message into a JPEG file without being detected by human vision or even computer. The tool should also be able to extract the secret message from such a JPEG file.
+
+Why This Project Is Created
+Currently there is many existing projects which have similar objectives to this one. However the ability of each of them is really limited. Most of them decode the whole JPEG file to spacial domain, and then modify the least significant bit (LSB), or do a discrete cosine transfer after the extraction. Users can not be sure that they can extract the exact same message hidden before since the DCT computation is not so accurate. So this project is for providing the exact accuracy. Each hidden bit remains without any loss of accuracy.
+
+How Can This Be Achieved
+Instead of decoding the whole image, it only perform a Huffman decode. After doing so all the initial quantized DCT coefficients are extracted. Then it modifies some of these coefficients to hide the message. The modified coefficients is then Huffman encoded and saved to a new JPEG file. This can avoid any loss of accuracy since it never performs DCT computations and Huffman encoding/decoding is fully invertible.
